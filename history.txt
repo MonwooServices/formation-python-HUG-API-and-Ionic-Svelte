@@ -1,0 +1,30 @@
+    7  ls
+    8  cd ..
+    9  rm -r git
+   10  ls
+   11  git
+   12  rm git
+   13  rm -r git
+   14  rm -rs git
+   15  rm -rf git
+   16  git clone https://github.com/MonwooServices/formation-python-HUG-API-and-Ionic-Svelte.git
+   17  cd formation-python-HUG-API-and-Ionic-Svelte
+   18  ls
+   19  cd ..
+   20  cd formation-python-HUG-API-and-Ionic-Svelte
+   21  cp ../install
+   22  cp ../install_hug.txt ./install.sh
+   23  git checkout -b elvexdomotique
+   24  git add commit "mise en place"
+   25  git add -A
+   26  git commit -m "[FORMATION] mise en place"
+   27  git commit -m "[FORMATION] mise en place" --global ElvexDom
+   28  git config --global user.name "ElvexDom"
+   29  git commit -m "[FORMATION] mise en place"
+   30  git config --global user.email "n.bertrand@elvex-domotique.fr"
+   31  git commit -m "[FORMATION] mise en place"
+   32  git push --set-upstream origin elvexdomotique
+   33  history | tail
+   34  history | tail -n
+   35  history | tail -n 30
+   36  history | tail -n 30 > history.txt
