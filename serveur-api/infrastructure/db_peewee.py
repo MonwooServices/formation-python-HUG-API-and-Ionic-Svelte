@@ -1,7 +1,7 @@
 from peewee import *
 from datetime import *
 
-db = SqliteDatabase('buddy-api.db.dev.sqlite')
+db = SqliteDatabase('buddy-api.db.sqlite')
 
 class message(Model):
     date = DateField()
