@@ -19,8 +19,15 @@ python serveur-api/infrastructure/db_peewee.py
 ## Dev launch (MacOS)
 
 ```bash
-# start server
+# load python env
 source .venv/bin/activate
+
+# start server
+hug -f serveur-api/HUG-entry.py
+
+# start some libs/bench examples
+# TIPS : move to some ./legacy folder if
+# not used for production/dev/quality domains
 hug -f first_step_2.py
 
 # DDD : run clients tests check automatic validation
@@ -29,7 +36,6 @@ hug -f first_step_2.py
 # Launch functional or
 export URL=https://demo.mediacms.io
 python first_test.py
-
 
 # TIPS : use /bin/zsh
 
