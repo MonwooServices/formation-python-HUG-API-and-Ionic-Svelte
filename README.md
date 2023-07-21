@@ -13,7 +13,7 @@ pip3 install pytest-playwright
 pip3 install hug peewee -U
 
 # install database
-python serveur-api/infrastructure/db_peewee.py
+python3 serveur-api/infrastructure/db_peewee.py
 
 ```
 ## Dev launch (MacOS)
@@ -35,7 +35,7 @@ hug -f first_step_2.py
 
 # Launch functional or
 export URL=https://demo.mediacms.io
-python first_test.py
+python3 first_test.py
 
 # TIPS : use /bin/zsh
 

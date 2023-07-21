@@ -6,7 +6,7 @@
 
 
 # TODO : with curl or playwrite : DO domain test on new db feature
-echo "Neet to test messages are correctly loaded for the domain";
+echo "Need to test messages are correctly loaded for the domain";
 exit 1
 
 
