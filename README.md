@@ -12,6 +12,9 @@ source .venv/bin/activate
 pip3 install pytest-playwright
 pip3 install hug peewee -U
 
+# https://earthly.dev/blog/playwright-python-api-testing/
+pip3 install allure-pytest
+
 # install database
 python3 serveur-api/infrastructure/db_peewee.py
 
