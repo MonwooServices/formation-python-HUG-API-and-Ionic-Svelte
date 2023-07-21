@@ -24,6 +24,8 @@ source .venv/bin/activate
 
 # start server
 hug -f serveur-api/HUG-entry.py
+or
+python3 serveur-api
 
 # start some libs/bench examples
 # TIPS : move to some ./legacy folder if

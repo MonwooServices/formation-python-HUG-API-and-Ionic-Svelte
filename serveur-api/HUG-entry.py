@@ -1,6 +1,5 @@
 # TODO : launch backend server...
 
-# TODO : some __main__.py to be able to easy launch with python ?
 # python serveur-api 
 
 # Sample from first try :
@@ -9,6 +8,7 @@
 import hug 
 from infrastructure.db_peewee import message
 
+@hug.cli()
 @hug.get(examples='msg=log&date=2023-07-21')
 @hug.local()
 
@@ -20,3 +20,6 @@ def api(msg: hug.types.text, date: hug.types.text, hug_timer=3):
             'took': float(hug_timer)}
 
 hug.API("api").http.server()
+
+if __name__ == '__main__':
+    api.interface.cli()
