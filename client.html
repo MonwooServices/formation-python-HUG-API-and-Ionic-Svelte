@@ -1,8 +1,20 @@
 <SCRIPT>
-fetch('http://192.168.1.100:8000').then(
-  resp => resp.json() // this returns a promise
-).then(repos => {console.log(repos)
-}).catch(ex => {
-  console.error(ex);
-})
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const backendIp = urlParams.get("backendIp") || "192.168.1.100";
+  const backendPort = urlParams.get("backendPort") || "8000";
+  fetch(`http://${backendIp}:${backendPort}`).then(
+    async resp => {
+      const dataResp = await resp.json(); // this returns a promise
+      console.assert(
+        // !resp.ok && dataResp.404, TIPS : syntax error since JS variables and attributs can't start by numbers
+        !resp.ok && dataResp["404"],
+        "Should do 404 page"
+      );
+      return resp;
+  }).then(repos => {
+    console.log(repos)
+  }).catch(ex => {
+    console.error(ex);
+  })
 </SCRIPT>
