@@ -1,0 +1,8 @@
+<SCRIPT>
+fetch('http://192.168.1.100:8000').then(
+  resp => resp.json() // this returns a promise
+).then(repos => {console.log(repos)
+}).catch(ex => {
+  console.error(ex);
+})
+</SCRIPT>
