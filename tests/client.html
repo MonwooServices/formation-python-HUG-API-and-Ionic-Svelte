@@ -17,30 +17,33 @@
       board.append(placeholder);
     }
 
-    // FAILING home page
-    appendToBody(`
-        <strong>TEST 1</strong> : home page errors validation in progress...
-    `);
+    (async () => {
+      // FAILING home page
+      appendToBody(`
+          <strong>TEST 1</strong> : home page errors validation in progress...
+      `);
 
-    fetch(`http://${backendIp}:${backendPort}`).then(
-      async resp => {
-        const dataResp = await resp.json(); // this returns a promise
-        console.assert(
-          // !resp.ok && dataResp.404, TIPS : syntax error since JS variables and attributs can't start by numbers
-          !resp.ok && dataResp["404"],
-          "[TEST-ERROR] Should do 404 page"
-        );
-        if (resp.ok) {
-          appendToBody(`
-            <strong>ERROR</strong> : TEST FAIL, home should not be accessible
-          `);
-        }
-        return resp;
-      }).then(repos => {
-      console.log(repos)
-    }).catch(ex => {
-      console.error(ex);
-    })
+      fetch(`http://${backendIp}:${backendPort}`).then(
+        async resp => {
+            const dataResp = await resp.json(); // this returns a promise
+            console.assert(
+              // !resp.ok && dataResp.404, TIPS : syntax error since JS variables and attributs can't start by numbers
+              !resp.ok && dataResp["404"],
+              "[TEST-ERROR] Should do 404 page"
+            );
+            if (resp.ok) {
+              appendToBody(`
+                <strong>ERROR</strong> : TEST FAIL, home should not be accessible
+              `);
+            }
+            return resp;
+          }).then(repos => {
+          console.log(repos)
+        }).catch(ex => {
+          console.error(ex);
+        })
+      }
+    )();
 
     appendToBody(`
         <strong>TEST 1</strong> : DONE
