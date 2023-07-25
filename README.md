@@ -18,6 +18,10 @@ pip3 install allure-pytest
 # install database
 python3 serveur-api/infrastructure/db_peewee.py
 
+# install pyjwt
+pip3 install pyjwt
+pip3 install cryptography
+
 ```
 ## Dev launch (MacOS)
 
@@ -43,5 +47,8 @@ export URL=https://demo.mediacms.io
 python3 first_test.py
 
 # TIPS : use /bin/zsh
+
+# USUALY COMMANDS IDENTATION
+ALT + MAJ + F
 
 ```
