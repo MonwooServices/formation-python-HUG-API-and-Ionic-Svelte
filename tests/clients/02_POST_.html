@@ -29,8 +29,14 @@
         // headers: { // POUR les call qui sont DEJA authentifié
         //   ... : ... token(encoded) // Pas besoin pour le login...
         // }
-        data: {
-          msg: 'hello_test', // TODO, (NEW ? UPDATE ? )
+        // Adding body or contents to send
+        body: JSON.stringify({
+            msg: "Hello, i m buddy"
+        }),
+        
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
         }
       }).then(
         async resp => {
