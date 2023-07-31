@@ -2,7 +2,7 @@ from peewee import *
 
 db = SqliteDatabase('buddy-api.db.sqlite')
 
-class message(Model):
+class Message(Model):
     date = DateField()
     time = DateField()
     msg = CharField()
@@ -12,4 +12,4 @@ class message(Model):
         database = db # This model uses the "people.db" database.
 
 db.connect()
-db.create_tables([message])
+db.create_tables([Message])

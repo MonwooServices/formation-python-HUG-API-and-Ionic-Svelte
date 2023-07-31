@@ -7,24 +7,24 @@
 """TODO : doc"""
 import hug
 import jwt
-from infrastructure.db_peewee import message
+from infrastructure.db_peewee import Message
 
 @hug.cli()
 #@hug.get(examples='msg=log&date=2023-07-21')
 @hug.local()
 
-@hug.get('/buddy')
-def buddy_api_call(msg: hug.types.text, date: hug.types.text, hug_timer=3):
+@hug.get('/api/buddy/read-msgs')
+def buddy_api_call(msg: hug.types.text, hug_timer=3):
     """Buddy Says"""
 
     return {'msg': '{0}'.format(msg),
-            'buddy-messages': map(lambda m : m.haveBeenSaid, message.select().where(message.msg == msg, message.date == date)),
+            'buddy-messages': map(lambda m : m.haveBeenSaid, Message.select()),
             'took': float(hug_timer)}
 
 
 # POST pour budy messages
 @hug.post('/api/buddy/send-msg')
-def buddy_api_call(msg: hug.types.text, hug_timer=3):
+def buddy_api_post(msg: hug.types.text, hug_timer=3):
     """Buddy Says"""
 
     return "test post ok"

@@ -20,9 +20,12 @@
     (async () => {
       // FAILING home page
       appendToBody(`
-          <strong>TEST 1</strong> : home page errors validation in progress...
+          <strong>TEST 1</strong> : Affichage du message posté par buddy
       `);
-
+      const message = "Hello, i m buddy"
+      appendToBody(`
+        <strong>Nous envoyons le message : "${message}"</strong>
+    `);
       // fetch(`http://${backendIp}:${backendPort}/api/jwt/login`, {
       await fetch(`http://${backendIp}:${backendPort}/api/buddy/send-msg`, {
         method: "POST",
@@ -31,9 +34,9 @@
         // }
         // Adding body or contents to send
         body: JSON.stringify({
-            msg: "Hello, i m buddy"
+            msg: message
         }),
-        
+
         // Adding headers to the request
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -49,8 +52,29 @@
           console.error(ex);
         })
 
+        await fetch(`http://${backendIp}:${backendPort}`).then(
+        async resp => {
+          const dataResp = await resp.json(); // this returns a promise
+          appendToBody(`
+            <strong>json : "${dataResp}"</strong>
+            `);
+          return resp;
+        }).then(repos => {
+          console.log(repos)
+        }).catch(ex => {
+          console.error(ex);
+        })
+
       appendToBody(`
-        <strong>TEST 3</strong> : DONE
+        <strong>TEST 1</strong> : DONE
+    `);
+
+      appendToBody(`
+          <strong>TEST 3</strong> : DONE
+      `);
+
+      appendToBody(`
+        <strong>TEST 1</strong> : DONE
     `);
     }
     )();
