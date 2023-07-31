@@ -31,13 +31,11 @@ def create_table_msg_buddy():
 
 # Creating data in table "Message"
 def create_msg_buddy(var_msg):
-    db_buddy.connect()
     Message.create(
         date=datetime.today().strftime('%Y-%m-%d'),
         time=datetime.today().strftime('%H:%M:%S'),
         msg=var_msg
         )
-    db_buddy.close()
 
 # Creating table "User" in "user-api.db.sqlite" database
 def create_table_user_buddy():
@@ -47,14 +45,12 @@ def create_table_user_buddy():
 
 # Creating data in table "User"
 def create_user_buddy(var_name):
-    db_user.connect()
     User.create(
         identity="ec6a3dae-0278-49d5-b909-03846369bae4",
         name=var_name,
         password="1234",
         key="HWeC6Tp4hTxXGPStfJgjoirj3XdzPgfBuf6CbRf8xF3Iacz4f7di1taQf6a05tlR="
         )
-    db_user.close()
 
 ### Commands test ###
 
