@@ -22,6 +22,14 @@ def buddy_api_call(msg: hug.types.text, date: hug.types.text, hug_timer=3):
             'took': float(hug_timer)}
 
 
+# POST pour budy messages
+@hug.post('api//buddy')
+def buddy_api_call(message: hug.types.text, hug_timer=3):
+    """Buddy Says"""
+
+    return "test post ok"
+
+
 authentication = hug.authentication.basic(hug.authentication.verify('User12', 'mypastword'))
 
 
