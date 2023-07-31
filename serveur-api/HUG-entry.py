@@ -8,6 +8,7 @@
 import hug
 import jwt
 from infrastructure.db_peewee import Message
+from datetime import *
 
 @hug.cli()
 #@hug.get(examples='msg=log&date=2023-07-21')
@@ -24,8 +25,13 @@ def buddy_api_call():
 @hug.post('/api/buddy/send-msg')
 def buddy_api_post(msg: hug.types.text, hug_timer=3):
     """Buddy Says"""
+    Message.create(
+    date=datetime.today().strftime('%Y-%m-%d'),
+    time=datetime.today().strftime('%H:%M:%S'),
+    msg=msg,
+    haveBeenSaid="test")
 
-    return "test post ok"
+    return "save message"
 
 
 authentication = hug.authentication.basic(hug.authentication.verify('User12', 'mypastword'))
