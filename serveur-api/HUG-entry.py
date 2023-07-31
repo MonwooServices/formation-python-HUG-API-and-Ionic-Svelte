@@ -23,7 +23,7 @@ def buddy_api_call(msg: hug.types.text, date: hug.types.text, hug_timer=3):
 
 
 # POST pour budy messages
-@hug.post('/api/buddy')
+@hug.post('/api/buddy/send-msg')
 def buddy_api_call(message: hug.types.text, hug_timer=3):
     """Buddy Says"""
 

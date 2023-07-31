@@ -24,7 +24,7 @@
       `);
 
       // fetch(`http://${backendIp}:${backendPort}/api/jwt/login`, {
-      await fetch(`http://${backendIp}:${backendPort}/api/buddy/message`, {
+      await fetch(`http://${backendIp}:${backendPort}/api/buddy/send-msg`, {
         method: "POST",
         // headers: { // POUR les call qui sont DEJA authentifié
         //   ... : ... token(encoded) // Pas besoin pour le login...
