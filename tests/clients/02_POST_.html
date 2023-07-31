@@ -22,7 +22,7 @@
       appendToBody(`
           <strong>TEST 1</strong> : Affichage du message posté par buddy
       `);
-      const message = "Hello, i m buddy"
+      const message = "Hello, i m buddy_2"
       appendToBody(`
         <strong>Nous envoyons le message : "${message}"</strong>
     `);
@@ -52,11 +52,11 @@
           console.error(ex);
         })
 
-        await fetch(`http://${backendIp}:${backendPort}`).then(
+        await fetch(`http://${backendIp}:${backendPort}/api/buddy/read-msgs`).then(
         async resp => {
           const dataResp = await resp.json(); // this returns a promise
           appendToBody(`
-            <strong>json : "${dataResp}"</strong>
+            <strong>json : "${JSON.stringify(dataResp)}"</strong>
             `);
           return resp;
         }).then(repos => {

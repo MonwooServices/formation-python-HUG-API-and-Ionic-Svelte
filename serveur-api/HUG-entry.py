@@ -14,12 +14,10 @@ from infrastructure.db_peewee import Message
 @hug.local()
 
 @hug.get('/api/buddy/read-msgs')
-def buddy_api_call(msg: hug.types.text, hug_timer=3):
+def buddy_api_call():
     """Buddy Says"""
 
-    return {'msg': '{0}'.format(msg),
-            'buddy-messages': map(lambda m : m.haveBeenSaid, Message.select()),
-            'took': float(hug_timer)}
+    return {'buddy-messages': map(lambda m : m.msg, Message.select())}
 
 
 # POST pour budy messages
