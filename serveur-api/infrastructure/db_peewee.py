@@ -7,6 +7,7 @@ db_rep = "serveur-api/infrastructure/database/"
 # This model uses the "buddy-api.db.sqlite" database
 db_buddy = SqliteDatabase(db_rep +'buddy-api.db.sqlite')
 class Message(Model):
+    user = CharField()
     date = DateField()
     time = DateField()
     msg = CharField()
@@ -30,8 +31,9 @@ def create_table_msg_buddy():
     db_buddy.close()
 
 # Creating data in table "Message"
-def create_msg_buddy(var_msg):
+def create_msg_buddy(var_user,var_msg):
     Message.create(
+        user=var_user,
         date=datetime.today().strftime('%Y-%m-%d'),
         time=datetime.today().strftime('%H:%M:%S'),
         msg=var_msg
@@ -51,10 +53,15 @@ def create_user_buddy(var_name):
         password="1234",
         key="HWeC6Tp4hTxXGPStfJgjoirj3XdzPgfBuf6CbRf8xF3Iacz4f7di1taQf6a05tlR="
         )
+# Update secret_key in table "User"
+def update_secretkey(var_user,var_key):
+    pass
+
 
 ### Commands test ###
 
 #create_table_msg_buddy()
 #create_table_user_buddy()
-#create_msg_buddy("buddy")
+#create_msg_buddy("buddy", "Hello!")
 #create_user_buddy("nicolas")
+#update_secretkey("nicolas", "1234")
