@@ -22,7 +22,7 @@
       appendToBody(`
           <strong>TEST 1</strong> : Affichage du message posté par buddy
       `);
-      const message = "Hello, i m buddy_2"
+      const message = "Hello, i m buddy"
       appendToBody(`
         <strong>Nous envoyons le message : "${message}"</strong>
     `);
@@ -51,30 +51,29 @@
         }).catch(ex => {
           console.error(ex);
         })
-
-        await fetch(`http://${backendIp}:${backendPort}/api/buddy/read-msgs`).then(
+        appendToBody(`
+        <strong>TEST 1</strong> : DONE
+    `);
+      appendToBody(`
+          <strong>TEST 2</strong> : Affichage du message reçu par le serveur
+      `);
+      await fetch(`http://${backendIp}:${backendPort}/api/buddy/read-msgs`).then(
         async resp => {
           const dataResp = await resp.json(); // this returns a promise
-          appendToBody(`
-            <strong>json : "${JSON.stringify(dataResp)}"</strong>
-            `);
+          const json =JSON.stringify(dataResp.buddy_messages)
+          const objet = JSON.parse(json);
+          if (message == objet[objet.length-1]) {
+            appendToBody(`
+            <strong>Nous avons reçu le message : "${objet[objet.length-1]}"</strong>
+              `);}
           return resp;
         }).then(repos => {
           console.log(repos)
         }).catch(ex => {
           console.error(ex);
         })
-
       appendToBody(`
-        <strong>TEST 1</strong> : DONE
-    `);
-
-      appendToBody(`
-          <strong>TEST 3</strong> : DONE
-      `);
-
-      appendToBody(`
-        <strong>TEST 1</strong> : DONE
+        <strong>TEST 2 </strong> : DONE
     `);
     }
     )();

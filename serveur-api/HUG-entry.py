@@ -37,13 +37,13 @@ def CORS(request, response, resource):
 @hug.get('/api/buddy/read-msgs')
 def buddy_api_get():
     """Buddy Have Been Said"""
-    return {'buddy-messages': map(lambda m : m.msg, Message.select().where(Message.user == "buddy"))}
+    return {'buddy_messages': map(lambda m : m.msg, Message.select().where(Message.user == "buddy"))}
 
 # SAUVEGARDE des messages de buddy dans sql
 @hug.post('/api/buddy/send-msg')
 def buddy_api_post(msg: hug.types.text, hug_timer=3):
     """Buddy Says"""
-    create_msg_buddy("Buddy",msg)
+    create_msg_buddy("buddy",msg)
     return "buddy message saved"
 
 # SAUVEGARDE des messages de user dans sql
