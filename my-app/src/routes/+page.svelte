@@ -1,18 +1,58 @@
-<script>
+<script lang="ts">
+
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
     import { onMount } from 'svelte';
-	//onMount(async await fetch(`http://${backendIp}:${backendPort}/api/buddy/read-msgs`)
-	onMount(async() => {
+	let message:any;
+	let inputText:HTMLInputElement;
+	//onMount(() => {
+		//const queryString = window.location.search;
+		//const urlParams = new URLSearchParams(queryString);
+		//const backendIp = urlParams.get("backendIp") || "86.193.154.93";
+		//const backendPort = urlParams.get("backendPort") || "8000";
+	//})
+	async function change(message:any) {
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		const backendIp = urlParams.get("backendIp") || "86.193.154.93";
 		const backendPort = urlParams.get("backendPort") || "8000";
-		await fetch(`http://${backendIp}:${backendPort}/api/buddy/read-msgs`);
-		console.log('the component has mounted');
-});
 
+		await fetch(`http://${backendIp}:${backendPort}/api/buddy/send-msg`, {
+        method: "POST",
+        body: JSON.stringify({
+            msg: message
+        }),
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then(
+        async resp => {
+          const dataResp = await resp.json(); // this returns a promise
+          // TODO
+          return resp;
+        }).then(repos => {
+          console.log(repos)
+        }).catch(ex => {
+          console.error(ex);
+        })
+	
+		await fetch(`http://${backendIp}:${backendPort}/api/buddy/read-msgs`).then(
+        async resp => {
+          const dataResp = await resp.json(); // this returns a promise
+          const messageList = dataResp.buddy_messages
+		  const lastMessage = messageList[messageList.length-1]
+          if (message == lastMessage) {
+            console.log(message);}
+          return resp;
+        }).then(repos => {
+          console.log(repos)
+        }).catch(ex => {
+          console.error(ex);
+        })
+
+	}
 </script>
 
 <svelte:head>
@@ -31,7 +71,17 @@
 
 		to<br />buddy application
 	</h1>
-
+	<h1>
+		<input type="text" bind:this={inputText}>
+	</h1>
+	<div class="testButton">
+		<button on:click={ () => (change(message = inputText.value)) }>
+			Cliquez-moi
+		  </button>
+	<div/>
+	<p>
+		Envoi du message "{message}" !!!
+	</p>
 	<h2>
 		try editing <strong>src/routes/+page.svelte</strong>
 	</h2>

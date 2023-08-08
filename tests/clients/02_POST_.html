@@ -60,11 +60,13 @@
       await fetch(`http://${backendIp}:${backendPort}/api/buddy/read-msgs`).then(
         async resp => {
           const dataResp = await resp.json(); // this returns a promise
-          const json =JSON.stringify(dataResp.buddy_messages)
-          const objet = JSON.parse(json);
-          if (message == objet[objet.length-1]) {
+          // TIPS
+          //const json =JSON.stringify(dataResp.buddy_messageList)
+          //const messageList = JSON.parse(json);
+          const messageList = dataResp.buddy_messages
+          if (message == messageList[messageList.length-1]) {
             appendToBody(`
-            <strong>Nous avons reçu le message : "${objet[objet.length-1]}"</strong>
+            <strong>Nous avons reçu le message : "${messageList[messageList.length-1]}"</strong>
               `);}
           return resp;
         }).then(repos => {
