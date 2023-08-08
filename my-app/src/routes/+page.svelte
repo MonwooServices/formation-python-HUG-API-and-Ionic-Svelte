@@ -4,18 +4,19 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
     import { onMount } from 'svelte';
-	let message:any;
 	let inputText:HTMLInputElement;
+	let message:any;
+	let resultTest:any;
 	//onMount(() => {
 		//const queryString = window.location.search;
 		//const urlParams = new URLSearchParams(queryString);
-		//const backendIp = urlParams.get("backendIp") || "86.193.154.93";
+		//const backendIp = urlParams.get("backendIp") || "192.168.1.100";
 		//const backendPort = urlParams.get("backendPort") || "8000";
 	//})
 	async function change(message:any) {
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
-		const backendIp = urlParams.get("backendIp") || "86.193.154.93";
+		const backendIp = urlParams.get("backendIp") || "192.168.1.100";
 		const backendPort = urlParams.get("backendPort") || "8000";
 
 		await fetch(`http://${backendIp}:${backendPort}/api/buddy/send-msg`, {
@@ -30,8 +31,7 @@
       }).then(
         async resp => {
           const dataResp = await resp.json(); // this returns a promise
-          // TODO
-          return resp;
+		  return resp;
         }).then(repos => {
           console.log(repos)
         }).catch(ex => {
@@ -43,12 +43,13 @@
           const dataResp = await resp.json(); // this returns a promise
           const messageList = dataResp.buddy_messages
 		  const lastMessage = messageList[messageList.length-1]
-          if (message == lastMessage) {
-            console.log(message);}
+          if (message = lastMessage) {
+			resultTest = "Succès";}
           return resp;
         }).then(repos => {
           console.log(repos)
         }).catch(ex => {
+		  resultTest = "Echec";
           console.error(ex);
         })
 
@@ -75,12 +76,12 @@
 		<input type="text" bind:this={inputText}>
 	</h1>
 	<div class="testButton">
-		<button on:click={ () => (change(message = inputText.value)) }>
-			Cliquez-moi
+		<button on:click={ () => (change(message = "TestBackend")) }>
+			Testez-moi
 		  </button>
 	<div/>
 	<p>
-		Envoi du message "{message}" !!!
+		Etat du test : "{resultTest}" !!!
 	</p>
 	<h2>
 		try editing <strong>src/routes/+page.svelte</strong>
