@@ -38,6 +38,8 @@ def create_msg_buddy(var_user,var_msg):
         time=datetime.today().strftime('%H:%M:%S'),
         msg=var_msg
         )
+        #q = User.insert(name='Lata', age=20)
+        #q.execute()
 
 # Creating table "User" in "user-api.db.sqlite" database
 def create_table_user_buddy():
@@ -53,6 +55,13 @@ def create_user_buddy(var_name):
         password="1234",
         key="HWeC6Tp4hTxXGPStfJgjoirj3XdzPgfBuf6CbRf8xF3Iacz4f7di1taQf6a05tlR="
         )
+
+# Deleting data in table "Message"
+def delete_msg_buddy(var_msg):
+    rows = Message.select().where(Message.msg == var_msg)
+    for row in rows:
+        row.delete_instance()
+
 # Update secret_key in table "User"
 def update_secretkey(var_user,var_key):
     pass
@@ -61,7 +70,8 @@ def update_secretkey(var_user,var_key):
 ### Commands test ###
 
 #create_table_msg_buddy()
+#create_msg_buddy("buddy", "Hello, i m buddy")
+#delete_msg_buddy("Hello, i m buddy")
 #create_table_user_buddy()
-#create_msg_buddy("buddy", "Hello!")
 #create_user_buddy("nicolas")
 #update_secretkey("nicolas", "1234")

@@ -46,6 +46,13 @@ def buddy_api_post(msg: hug.types.text, hug_timer=3):
     create_msg_buddy("buddy",msg)
     return "buddy message saved"
 
+# SUPRESSION des messages de buddy dans sql
+@hug.post('/api/buddy/delete-msg')
+def buddy_api_post_delete(msg: hug.types.text, hug_timer=3):
+    delete_msg_buddy(msg)
+    print("ok")
+    return "buddy message deleted"
+
 # SAUVEGARDE des messages de user dans sql
 @hug.get('/api/user/send-msg')
 def user_api_get(msg: hug.types.text, hug_timer=3):

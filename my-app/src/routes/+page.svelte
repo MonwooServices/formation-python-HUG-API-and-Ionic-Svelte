@@ -52,7 +52,25 @@
 		  resultTest = "Echec";
           console.error(ex);
         })
-
+		await fetch(`http://${backendIp}:${backendPort}/api/buddy/delete-msg`, {
+        method: "POST",
+        body: JSON.stringify({
+            msg: message
+        }),
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then(
+        async resp => {
+          const dataResp = await resp.json(); // this returns a promise
+		  return resp;
+        }).then(repos => {
+          console.log(repos)
+        }).catch(ex => {
+		  resultTest = "Echec";
+          console.error(ex);
+        })
 	}
 </script>
 
