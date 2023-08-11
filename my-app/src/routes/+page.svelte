@@ -3,6 +3,14 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import buddy from '$lib/images/Buddy_Transparent_01.webp';
+	import buddy_fallback from '$lib/images/Buddy_Transparent_01.png';
+	import { dev } from '$app/environment';
+
+if (dev) {
+	//do in dev mode
+	console.log("mode_dev")
+}
     import { onMount } from 'svelte';
 	let inputText:HTMLInputElement;
 	let message:any;
@@ -87,25 +95,35 @@
 				<img src={welcome_fallback} alt="Welcome" />
 			</picture>
 		</span>
+		<br />BUDDY
+		<span class="buddy">
+			<picture>
+				<source srcset={buddy} type="image/webp" />
+				<img src={buddy_fallback} alt="buddy" />
+			</picture>
+		</span>
 
-		to<br />buddy application
 	</h1>
-	<h1>
+	<!--<h1>
 		<input type="text" bind:this={inputText}>
-	</h1>
+	</h1>-->
+	<!--<p>
+		{resultTest || ''}
+	</p><-->
+	<div bind:innerHTML={resultTest} contenteditable />
+	{#if dev}
 	<div class="testButton">
 		<button on:click={ () => (change(message = "TestBackend")) }>
 			Testez-moi
 		  </button>
-	<div/>
-	<p>
-		Etat du test : "{resultTest}" !!!
-	</p>
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+	</div>
+	{/if}
 
-	<Counter />
+	<!--<h2>
+		try editing <strong>src/routes/+page.svelte</strong>
+	</h2>-->
+
+	<!--<Counter />-->
 </section>
 
 <style>
@@ -130,6 +148,20 @@
 	}
 
 	.welcome img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		display: block;
+	}
+	.buddy {
+		display: block;
+		position: relative;
+		width: 100%;
+		height: 0;
+		padding: 0 0 calc(100% * 495 / 2048) 0;
+	}
+	.buddy img {
 		position: absolute;
 		width: 100%;
 		height: 100%;
