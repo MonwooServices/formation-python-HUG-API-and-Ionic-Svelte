@@ -1,48 +1,61 @@
+<script lang="ts">
+import buddy from '$lib/images/Buddy_Transparent_01.webp';
+import buddy_fallback from '$lib/images/Buddy_Transparent_01.png';
+import { IonNav } from 'ionic-svelte';
+import NavHome from '$lib/components/NavHome.svelte';
+import { loadingController } from 'ionic-svelte';
+import { IonPage } from 'ionic-svelte';
+import SourceButton from '$lib/components/SourceButton.svelte';
+import { toastController } from 'ionic-svelte';
 
-  <ion-card>
-	<ion-card-header>
-		<ion-card-subtitle>Great success!!</ion-card-subtitle>
-		<ion-card-title>Welcome to your app!</ion-card-title>
-	</ion-card-header>
+const showToast = async () => {
+	const toast = await toastController.create({
+		color: 'danger',
+		duration: 4000,
+		message: 'This is a test !!!'
+		});
+	toast.present();
+	};
 
-	<ion-card-content>
-		Thank you for using this starter. Click buttons below to open these guides (will
-		open in new window). Don't forget to open DevTools to see this app in mobile mode. Happy coding!!!
-	</ion-card-content>
+	const showLoading = async () => {
+		const options = {
+		message: 'Loading......',
+		duration: 30000
+		};
+		const loading = await loadingController.create(options);
+		loading.present();
+		setTimeout(() => {
+			loading.dismiss();
+			}, 2000);
+		showToast();
+		};
 
-	<ion-button expand="block">Block</ion-button> <ion-button expand="full">Full</ion-button>
+</script>
 
-	<ion-item>
-		<ion-label>Visit Ionic Showcase app with sourceviewer</ion-label>
-		<ion-button href="https://ionicsvelte.firebaseapp.com/" target="_new" fill="outline" slot="end"
-			>View</ion-button
-		>
-	</ion-item>
+<svelte:head>
+<title>Ionic Companion - Loading</title>
+</svelte:head>
 
-	<ion-item>
-		<ion-label>Visit Ionic component docs</ion-label>
-		<ion-button
-			href="https://ionicframework.com/docs/components"
-			target="_new"
-			fill="outline"
-			slot="end">View</ion-button
-		>
-	</ion-item>
-	<ion-item>
-		<ion-label>Visit Svelte Kit docs</ion-label>
-		<ion-button
-			href="https://kit.svelte.dev/docs/introduction"
-			target="_new"
-			fill="outline"
-			slot="end">View</ion-button
-		>
-	</ion-item>
-	<ion-item>
-		<ion-label>Visit Svelte docs</ion-label>
-		<ion-button href="https://svelte.dev/docs" target="_new" fill="outline" slot="end"
-			>View</ion-button
-		>
-	</ion-item>
-</ion-card>
-
-  
+<IonPage>
+		<ion-content fullscreen class="ion-padding">
+		   <!-- svelte-ignore a11y-click-events-have-key-events -->
+		   <!-- svelte-ignore a11y-no-static-element-interactions -->
+		   <ion-button on:click={showLoading}>Click me!</ion-button>
+		</ion-content>
+		<ion-card>
+			<img src={buddy} alt="buddy" />
+			<ion-card-header>
+				<ion-card-subtitle>SOLUTIONS ROBOTIQUES ÉMOTIONNELLES DÉDIÉES</ion-card-subtitle> 
+				<ion-card-title>BUDDY, LE ROBOT EMOTIONNEL</ion-card-title>
+			</ion-card-header>
+			<ion-card-content>
+				BUDDY peut améliorer la vie de tous,
+				et plus particulièrement créer des liens sociaux,
+				soutenir l'apprentissage des enfants,
+				veiller et prendre soin de nos aînés.
+			</ion-card-content>
+		</ion-card>
+		<ion-router-link href="/navigation#/page-one">
+			<ion-button>Next Page</ion-button>
+		</ion-router-link>
+</IonPage>
