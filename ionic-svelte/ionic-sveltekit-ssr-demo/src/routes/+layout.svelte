@@ -1,4 +1,7 @@
 <script lang='ts'>
+	import Header from './Header.svelte';
+	import IonPage from 'ionic-svelte/components/IonPage.svelte';
+	//import './styles.css';
 	import { setupIonicBase } from 'ionic-svelte';
 
 	/* Call Ionic's setup routine */
@@ -41,8 +44,20 @@
 		Want to know what is happening more - follow me on Twitter - https://twitter.com/Tommertomm
 		Discord channel on Ionic server - https://discordapp.com/channels/520266681499779082/1049388501629681675
 	*/
+
 </script>
 
+
 <ion-app>
-	<slot />
-</ion-app>
+	<ion-split-pane content-id="main">
+		<Header />
+	  <div class="ion-page" id="main">
+		<IonPage>
+		<slot />
+		</IonPage>
+		<footer>
+			<p><a href="https://elvex-domotique.fr">ELVEX DOMOTIQUE</a></p>
+		</footer>
+	  </div>
+	</ion-split-pane>
+  </ion-app>

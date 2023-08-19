@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@capacitor/camera": "^5.0.7"
+  },
+  "devDependencies": {
+    "@ionic/vue": "^7.3.0",
+    "@roxi/routify": "^2.18.12",
+    "inputs": "^0.9.2",
+    "sveltekit-superforms": "^1.5.3",
+    "vue": "^3.3.4",
+    "zod": "^3.22.1"
+  }
+}

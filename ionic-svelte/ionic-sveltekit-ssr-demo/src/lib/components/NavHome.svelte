@@ -61,7 +61,7 @@
 <ion-content fullscreen class="ion-padding">
 	<ion-list>
 		{#each techs as tech}
-			<ion-item
+			<ion-item role="presentation"
 				button
 				on:click={() => {
 					showDetail(tech);

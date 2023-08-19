@@ -1,48 +1,62 @@
-<script lang="ts">
-import { IonNav } from 'ionic-svelte';
-import NavHome from '$lib/components/NavHome.svelte';
-import { loadingController } from 'ionic-svelte';
-import { IonPage } from 'ionic-svelte';
-import SourceButton from '$lib/components/SourceButton.svelte';
-import { toastController } from 'ionic-svelte';
-
-const showToast = async () => {
-   const toast = await toastController.create({
-      color: 'danger',
-      duration: 4000,
-      message: 'Here a random toast'
-      // showCloseButton: true,
-   });
-   toast.present();
-};
-
-const showLoading = async () => {
-   const options = {
-      message: 'Please wait......',
-      duration: 30000
-   };
-   const loading = await loadingController.create(options);
-   loading.present();
-   setTimeout(() => {
-      loading.dismiss();
-   }, 2000);
-   showToast();
-};
-</script>
-
 <svelte:head>
-<title>Ionic Companion - Loading</title>
+<title>Ionic Companion - Debug</title>
+<meta name="Test Mode" content="Test" />
 </svelte:head>
 
-<ion-app>
-   <ion-nav root={NavHome}></ion-nav>
-</ion-app>
+<script lang="ts">
+import arrow_back from "$lib/images/arrow-back-outline.svg"
+import arrow_forward from "$lib/images/arrow-forward-outline.svg"
+import arrow_down from "$lib/images/arrow-down-outline.svg"
+import arrow_up from "$lib/images/arrow-up-outline.svg"
+import buddy_svg from "$lib/images/faces/buddy_svg.svg"
 
-<IonPage>
+</script>
+
 <ion-content fullscreen class="ion-padding">
-   <!-- svelte-ignore a11y-click-events-have-key-events -->
-   <!-- svelte-ignore a11y-no-static-element-interactions -->
-   <ion-button on:click={showLoading}>Click me!</ion-button>
-</ion-content>
+	<ion-header translucent={true}>
+	  <ion-toolbar>
+		<ion-buttons slot="start">
+		  <ion-menu-button />
+		</ion-buttons>
+		<ion-buttons slot="end">
+		</ion-buttons>
+			<ion-title>Debug</ion-title>
+	 </ion-toolbar>
+	 </ion-header>
+	<ion-card>
+		<ion-card-header>
+		<!--<ion-card-subtitle>Check configuration</ion-card-subtitle>-->
+		<!--<ion-card-title>DEBUG MODE</ion-card-title>-->
+	</ion-card-header>
 
-</IonPage>
+	<ion-card-content>
+		<!--Vous pouvez écrire votre message ici-->
+	</ion-card-content>
+	<ion-item>
+		<ion-button aria-label="Favorite">
+			<ion-icon icon={arrow_up}></ion-icon>
+		  </ion-button>
+	</ion-item>
+	<ion-item>
+		<ion-button aria-label="Favorite">
+			<ion-icon icon={arrow_back}></ion-icon>
+		  </ion-button>
+
+		<ion-button aria-label="Favorite">
+			<ion-icon icon={arrow_forward}></ion-icon>
+		  </ion-button>
+	</ion-item>
+	<ion-item>
+		<ion-button aria-label="Favorite">
+			<ion-icon icon={arrow_down}></ion-icon>
+		  </ion-button>
+	</ion-item>
+	<ion-item>
+		<ion-button aria-label="Favorite" fill="clear" color="dark" slot="end">Buddy SVG
+			<ion-icon slot="icon-only" size="large"icon={buddy_svg}></ion-icon>
+		  </ion-button>
+	</ion-item>
+
+</ion-card>
+
+</ion-content>

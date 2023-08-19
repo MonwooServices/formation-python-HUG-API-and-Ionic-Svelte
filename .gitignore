@@ -2,3 +2,4 @@
 __pycache__
 buddy-api.db.sqlite
 user-api.db.sqlite
+node_modules
