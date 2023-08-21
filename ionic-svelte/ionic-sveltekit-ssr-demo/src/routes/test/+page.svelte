@@ -1,62 +1,95 @@
 <svelte:head>
-<title>Ionic Companion - Debug</title>
-<meta name="Test Mode" content="Test" />
+<title>Ionic Companion - Message</title>
+<meta name="Message" content="Send message" />
 </svelte:head>
 
 <script lang="ts">
-import arrow_back from "$lib/images/arrow-back-outline.svg"
-import arrow_forward from "$lib/images/arrow-forward-outline.svg"
-import arrow_down from "$lib/images/arrow-down-outline.svg"
-import arrow_up from "$lib/images/arrow-up-outline.svg"
-import buddy_svg from "$lib/images/faces/buddy_svg.svg"
+import { loadingController } from 'ionic-svelte';
+import { toastController } from 'ionic-svelte';
+let text:any="testnok";
+let itemList:any = [];
+
+const showToast = async (color:any,message:any) => {
+	const toast = await toastController.create({
+		color: color,
+		duration: 4000,
+		message: message
+		});
+	toast.present();
+	};
+
+	async function showLoading() {
+		const options = {
+		message: 'Loading......',
+		duration: 100
+		};
+		const loading = await loadingController.create(options);
+		loading.present();
+		setTimeout(() => {
+			loading.dismiss();
+			}, 2500);	
+		};
+
+		async function submit(text:any) {
+		showLoading();	
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const backendIp = urlParams.get("backendIp") || "192.168.1.100";
+		const backendPort = urlParams.get("backendPort") || "8000";
+		await fetch(`http://${backendIp}:${backendPort}/api/buddy/read-msgs`).then(
+        async resp => {
+          const dataResp = await resp.json(); // this returns a promise
+          const messageList = dataResp.buddy_messages
+		  const lastMessage = messageList[messageList.length-1]
+		  itemList = itemList.concat(messageList);
+		  ////TIPS////
+		  //messageList.forEach(function (value:any) {
+  			//console.log(value);
+		  //});
+          return resp;
+        }).then(repos => {
+          //console.log(repos)
+        }).catch(ex => {
+			showToast("danger","Echec");
+          //console.error(ex);
+        })
+
+	}
+
 
 </script>
 
-<ion-content fullscreen class="ion-padding">
-	<ion-header translucent={true}>
-	  <ion-toolbar>
-		<ion-buttons slot="start">
-		  <ion-menu-button />
-		</ion-buttons>
-		<ion-buttons slot="end">
-		</ion-buttons>
-			<ion-title>Debug</ion-title>
-	 </ion-toolbar>
-	 </ion-header>
-	<ion-card>
-		<ion-card-header>
-		<!--<ion-card-subtitle>Check configuration</ion-card-subtitle>-->
-		<!--<ion-card-title>DEBUG MODE</ion-card-title>-->
-	</ion-card-header>
+	<ion-content fullscreen class="ion-padding">
+		<ion-header translucent={true}>
+		  <ion-toolbar>
+			<ion-buttons slot="start">
+			  <ion-menu-button />
+			</ion-buttons>
+			<ion-buttons slot="end">
+			</ion-buttons>
+				<ion-title>Message</ion-title>
+		 </ion-toolbar>
+     	</ion-header>
+		<ion-card>
+		  <ion-card-header>
+			<!--<ion-card-subtitle>Check configuration</ion-card-subtitle>-->
+			<!--<ion-card-title>MESSAGE</ion-card-title>-->
+		  </ion-card-header>
 
 	<ion-card-content>
 		<!--Vous pouvez écrire votre message ici-->
 	</ion-card-content>
-	<ion-item>
-		<ion-button aria-label="Favorite">
-			<ion-icon icon={arrow_up}></ion-icon>
-		  </ion-button>
-	</ion-item>
-	<ion-item>
-		<ion-button aria-label="Favorite">
-			<ion-icon icon={arrow_back}></ion-icon>
-		  </ion-button>
+	<ion-list>
+		{#each itemList as item}
+		<ion-item color="light">
+		   <ion-label>{item}</ion-label>
+		</ion-item>
+		{/each}
+	 </ion-list>
+		</ion-card>
 
-		<ion-button aria-label="Favorite">
-			<ion-icon icon={arrow_forward}></ion-icon>
-		  </ion-button>
-	</ion-item>
-	<ion-item>
-		<ion-button aria-label="Favorite">
-			<ion-icon icon={arrow_down}></ion-icon>
-		  </ion-button>
-	</ion-item>
-	<ion-item>
-		<ion-button aria-label="Favorite" fill="clear" color="dark" slot="end">Buddy SVG
-			<ion-icon slot="icon-only" size="large"icon={buddy_svg}></ion-icon>
-		  </ion-button>
-	</ion-item>
+	<div class="ion-padding">
+		<ion-button role="presentation" on:click={ () => (submit({text})) } expand="block" type="submit" class="ion-no-margin"> Envoyer </ion-button>
+	</div>
 
-</ion-card>
-
-</ion-content>
+	</ion-content>

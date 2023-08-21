@@ -1,8 +1,8 @@
 <script lang='ts'>
 	import Header from './Header.svelte';
 	import IonPage from 'ionic-svelte/components/IonPage.svelte';
-	//import './styles.css';
 	import { setupIonicBase } from 'ionic-svelte';
+	//import './styles.css';
 
 	/* Call Ionic's setup routine */
 	setupIonicBase();

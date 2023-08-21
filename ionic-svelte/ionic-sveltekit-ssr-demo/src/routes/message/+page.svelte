@@ -17,10 +17,10 @@ const showToast = async (color:any,message:any) => {
 	toast.present();
 	};
 
-	const showLoading = async () => {
+	async function showLoading() {
 		const options = {
 		message: 'Loading......',
-		duration: 30000
+		duration: 3000
 		};
 		const loading = await loadingController.create(options);
 		loading.present();
@@ -56,7 +56,7 @@ async function submit(text:any) {
 			}, 2200);
           console.log(repos)
         }).catch(ex => {
-			showToast("danger","Echec de l'envoi");
+		  showToast("danger","Echec de l'envoi");
           console.error(ex);
         })
 }

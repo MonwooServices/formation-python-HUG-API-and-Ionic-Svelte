@@ -8,37 +8,34 @@
 	const select = (num:any) => () => (value += num);
 	const clear = () => (value = '');
 	const submit = () => dispatch('submit');
+	import buddy_svg from "$lib/images/arrow-up-outline.svg"
 </script>
 
 <div class="keypad">
-	<button on:click={select(1)}>1</button>
-	<button on:click={select(2)}>2</button>
-	<button on:click={select(3)}>3</button>
-	<button on:click={select(4)}>4</button>
-	<button on:click={select(5)}>5</button>
-	<button on:click={select(6)}>6</button>
-	<button on:click={select(7)}>7</button>
-	<button on:click={select(8)}>8</button>
-	<button on:click={select(9)}>9</button>
-
-	<button disabled={!value} on:click={clear}
-		>clear</button
-	>
-	<button on:click={select(0)}>0</button>
-	<button disabled={!value} on:click={submit}
-		>submit</button
-	>
+	<ion-button disabled fill="clear" />
+	  <ion-button aria-label="Favorite" color="dark">
+		<ion-icon size="large"icon={buddy_svg}></ion-icon>
+	  </ion-button>
+	  <ion-button disabled fill="clear" />
+	  <ion-button aria-label="Favorite" color="dark">
+		<ion-icon size="large"icon={buddy_svg}></ion-icon>
+	  </ion-button>
+	  <ion-button disabled fill="outline" shape="round" color="dark" strong>MOVE</ion-button>
+	  <ion-button aria-label="Favorite" color="dark">
+		<ion-icon size="large"icon={buddy_svg}></ion-icon>
+	  </ion-button>
+	  <ion-button disabled fill="clear" />
+	  <ion-button aria-label="Favorite" color="dark">
+		<ion-icon size="large"icon={buddy_svg}></ion-icon>
+	  </ion-button>
+	  <ion-button disabled fill="clear" />
 </div>
 
 <style>
 	.keypad {
 		display: grid;
-		grid-template-columns: repeat(3, 5em);
-		grid-template-rows: repeat(4, 3em);
+		grid-template-columns: repeat(3, 4em);
+		grid-template-rows: repeat(3, 4em);
 		grid-gap: 0.5em;
-	}
-
-	button {
-		margin: 0;
 	}
 </style>

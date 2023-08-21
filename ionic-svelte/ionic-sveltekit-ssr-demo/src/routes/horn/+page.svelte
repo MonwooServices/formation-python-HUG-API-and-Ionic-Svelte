@@ -22,5 +22,5 @@
 			<!--<ion-title>Debug</ion-title>-->
 		</ion-toolbar> 
 	</ion-header>
-	<center><BigRedButton on:click={handleClick} /></center>
+	<center><BigRedButton on:click={handleClick()}  /></center>
 </IonPage>

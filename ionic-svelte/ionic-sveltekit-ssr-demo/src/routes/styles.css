@@ -106,3 +106,7 @@ button:focus:not(:focus-visible) {
 	white-space: nowrap;
 }
 */
+ion-thumbnail {
+	--size: 2em;
+	--border-radius: 0.5em;
+  }

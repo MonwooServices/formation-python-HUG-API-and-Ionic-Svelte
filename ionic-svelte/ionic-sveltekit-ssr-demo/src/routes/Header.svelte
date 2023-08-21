@@ -33,7 +33,7 @@ let menuItems: Array<{ url: string; label: string; icon: any }> = Object.keys(mo
 				key.replace('../../routes/', '').replace('/+page.svelte', '')
 			)
 		)
-		.concat(['buddy'],['debug'],['history'],['message'],['test'])
+		.concat(['buddy'],['debug'],['face'],['history'],['message'],['move'],['test'])
 		.sort()
 
 		.map((componentName) => {

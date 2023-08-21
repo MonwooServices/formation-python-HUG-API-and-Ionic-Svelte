@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "@capacitor/camera": "^5.0.7"
+    "@angular/core": "^16.2.1",
+    "@capacitor/camera": "^5.0.7",
+    "@ionic-native/image-picker": "^5.36.0"
   },
   "devDependencies": {
     "@ionic/vue": "^7.3.0",
