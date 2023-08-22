@@ -6,15 +6,17 @@
 <script lang="ts">
 import { loadingController } from 'ionic-svelte';
 import { toastController } from 'ionic-svelte';
-let text:any="testnok";
+let ionInput:any="";
+let textValue="";
 
-const showToast = async (color:any,message:any) => {
+async function showToast(color:any,message:any) {
 	const toast = await toastController.create({
 		color: color,
 		duration: 4000,
 		message: message
 		});
 	toast.present();
+	ionInput.value = '';
 	};
 
 	async function showLoading() {
@@ -26,12 +28,11 @@ const showToast = async (color:any,message:any) => {
 		loading.present();
 		setTimeout(() => {
 			loading.dismiss();
-			}, 2500);	
+			}, 2500);
 		};
 		
-async function submit(text:any) {
+async function submit(ionInput:any) {
 		showLoading();
-		console.log(text.text.value)
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		const backendIp = urlParams.get("backendIp") || "192.168.1.100";
@@ -40,7 +41,7 @@ async function submit(text:any) {
 		await fetch(`http://${backendIp}:${backendPort}/api/buddy/send-msg`, {
         method: "POST",
         body: JSON.stringify({
-            msg: text.text.value
+            msg: ionInput.value
         }),
         // Adding headers to the request
         headers: {
@@ -60,8 +61,6 @@ async function submit(text:any) {
           console.error(ex);
         })
 }
-
-
 
 </script>
 
@@ -87,17 +86,15 @@ async function submit(text:any) {
 	</ion-card-content>
 
 	<ion-item>
-		<ion-input clear-input bind:this={text} label="Entrer votre message !" label-placement="floating" name="Message" />
+		<ion-input on:input={() => {
+			textValue=ionInput.value;
+		
+		}} bind:this={ionInput} label="Entrer votre message !" label-placement="floating" name="Message" />
 	</ion-item>
 		</ion-card>
 
-	<div class="ion-padding">
-		<ion-button role="presentation" on:click={ () => (submit({text})) } expand="block" type="submit" class="ion-no-margin"> Envoyer </ion-button>
-	</div>
+	<ion-item>
+		<ion-button disabled={!textValue.length} id="but" role="presentation" on:click={ () => (submit(ionInput)) }> Envoyer </ion-button>
+	</ion-item>
 
 	</ion-content>
-  
-	
-
-
-	

@@ -1,27 +1,25 @@
 <svelte:head>
-<title>Ionic Companion - Debug</title>
-<meta name="Debug Mode" content="Check configuration" />
+	<title>Ionic Companion - Debug</title>
+	<meta name="Debug Mode" content="Check configuration" />
 </svelte:head>
 
 <script lang="ts">
-import { alertController } from 'ionic-svelte';
+	import { alertController } from 'ionic-svelte';
 
-const showAlert = async (options:any) => {
-	const alert = await alertController.create(options);
-	alert.present();
-};
+	async function showAlert(options:any) {
+		const alert = await alertController.create(options);
+		alert.present();
+	};
 
-const showSimpleAlert = async () => {
+	function showSimpleAlert() {
 		const options = {
 			header: 'Test',
 			subHeader: '',
 			message: 'Commande lancée.',
 			buttons: ['OK']
 		};
-
 		return showAlert(options);
 	};
-
 </script>
 
 <ion-content fullscreen class="ion-padding">
@@ -82,7 +80,7 @@ const showSimpleAlert = async () => {
 		<ion-label>Test 9</ion-label>
 		<ion-button role="presentation" fill="outline" on:click={showSimpleAlert}> View </ion-button>
 	</ion-item>
-</ion-card>
+	</ion-card>
 
 </ion-content>
   

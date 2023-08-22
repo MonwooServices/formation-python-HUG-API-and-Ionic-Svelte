@@ -36,3 +36,32 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Building
+
+Creating Android app from Svelte Web app
+
+```bash
+npm install @capacitor/android
+npx cap add android
+npx cap sync
+npx cap open android
+```
+
+# Compile apk android
+```
+Dans l'ongler build
+Selectionner Build/Bundle(s) / APK(s)
+Lancer Build APK(s)
+```
+
+#Apk install
+```
+.\adb devices
+.\adb install $path_to_apk
+``` 
+
+## Debug Android (Mode Developper)
+```bash
+.\adb "shell logcat | grep 'Web Console'"
+```

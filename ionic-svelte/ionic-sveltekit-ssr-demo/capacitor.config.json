@@ -1,0 +1,13 @@
+{
+    "appId": "com.buddy.app",
+    "appName": "Buddy_app",
+    "webDir": "public",
+    "bundledWebRuntime": false,
+    "plugins": {
+      "Camera": {
+        "ios": {
+          "photolibraryUsageDescription": "To choose photos"
+        }
+      }
+    }
+  }

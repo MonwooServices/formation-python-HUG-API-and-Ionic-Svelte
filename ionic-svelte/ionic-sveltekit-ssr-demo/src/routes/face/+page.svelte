@@ -4,20 +4,19 @@
 </svelte:head>
 	
 <script lang="ts">
-	import '../styles.css';
+	import './styles.css';
 	import buddy_static from '$lib/images/faces/47_static.gif'
 	import buddy_sad from '$lib/images/faces/48_sad.gif'
 	import buddy_scared from '$lib/images/faces/49_scared.gif'
 	import buddy_sick from '$lib/images/faces/50_sick.gif'
 	import littlestar_love from '$lib/images/faces/18_littlestar_love.gif'
-let face =buddy_static;
+	let face =buddy_static;
 
-function changeFace(next_face:any) {
-	face=next_face
-	console.log(face)
-	return face;
-};
-
+	function changeFace(next_face:any) {
+		face=next_face
+		console.log(face)
+		return face;
+	};
 </script> 
 
 <ion-content fullscreen class="ion-padding">
@@ -29,18 +28,20 @@ function changeFace(next_face:any) {
 		<ion-buttons slot="end">
 		</ion-buttons>
 			<ion-title>Buddy Faces</ion-title>
-	 </ion-toolbar>
-	 </ion-header>
+	  </ion-toolbar>
+	</ion-header>
 	<ion-card>
 		<ion-card-header>
 		<!--<ion-card-subtitle>Check configuration</ion-card-subtitle>-->
 		<!--<ion-card-title>HISTORY</ion-card-title>-->
-	</ion-card-header>
+		</ion-card-header>
 
 	<ion-card-content>
 		<!--Vous pouvez écrire votre message ici-->
 	</ion-card-content>
-	<ion-img src={face} alt="buddy faces"></ion-img>
+	<ion-item>
+	  <ion-img src={face} alt="buddy faces"></ion-img>
+	</ion-item>
 	<ion-list>
 	  <ion-item>
 		<ion-button role="presentation" fill="clear" on:click={ () => (changeFace(buddy_static))}>
@@ -59,7 +60,7 @@ function changeFace(next_face:any) {
 		</ion-button>
 	  </ion-item>
 	  <ion-item>
-		<ion-button role="presentation" fill="clear" on:click={ () => (changeFace(buddy_scared))}>
+		<ion-button role="presentation" fill="clear" on:click={ () => (changeFace(buddy_scared)) }>
 		  <ion-thumbnail slot="start">
 			<ion-img src={buddy_scared}></ion-img>
 		  </ion-thumbnail>

@@ -5,6 +5,7 @@ import { showMenu } from '$lib/services/menu';
 import * as allIonicIcons from 'ionicons/icons';
 import { goto } from '$app/navigation';
 import { menuController, modalController, registerMenu } from 'ionic-svelte';
+import { dev } from '$app/environment';
 const modules = import.meta.glob('../../**/*.svelte', { as: 'raw' });
 let inlineModalOpen = false;
 export let side: 'start' | 'end' | undefined = 'start';

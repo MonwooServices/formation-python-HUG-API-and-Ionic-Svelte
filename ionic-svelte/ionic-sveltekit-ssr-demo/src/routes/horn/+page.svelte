@@ -16,11 +16,9 @@
 	}
 </script>
 
-<IonPage>
 	<ion-header translucent={true}>
 		<ion-toolbar>
 			<!--<ion-title>Debug</ion-title>-->
 		</ion-toolbar> 
 	</ion-header>
-	<center><BigRedButton on:click={handleClick()}  /></center>
-</IonPage>
+	<center><BigRedButton on:click={handleClick}  /></center>
