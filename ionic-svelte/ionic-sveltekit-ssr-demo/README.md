@@ -44,7 +44,9 @@ Creating Android app from Svelte Web app
 ```bash
 npm install @capacitor/android
 npx cap add android
-npx cap sync
+npx cap sync 
+    ou
+npx cap sync android
 npx cap open android
 ```
 

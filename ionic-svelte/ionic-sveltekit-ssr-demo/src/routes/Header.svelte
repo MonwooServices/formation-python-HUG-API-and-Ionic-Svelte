@@ -1,11 +1,11 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import buddy from '$lib/images/Buddy_Transparent_01.webp';
+import elvex from '$lib/images/Elvex_Domotique.png';
 import { showMenu } from '$lib/services/menu';
 import * as allIonicIcons from 'ionicons/icons';
 import { goto } from '$app/navigation';
 import { menuController, modalController, registerMenu } from 'ionic-svelte';
-import { dev } from '$app/environment';
+//import { dev } from '$app/environment';
 const modules = import.meta.glob('../../**/*.svelte', { as: 'raw' });
 let inlineModalOpen = false;
 export let side: 'start' | 'end' | undefined = 'start';
@@ -19,7 +19,7 @@ const closeAndNavigate = async (url: string) => {
 		// take the google tag from the main thread
 		setTimeout(() => {
 			//@ts-ignore
-			if (!dev) window.gtag('event', url);
+			//if (!dev) window.gtag('event', url);
 		}, 100);
 
 		console.log('Navigate url', url);
@@ -68,31 +68,32 @@ let menuItems: Array<{ url: string; label: string; icon: any }> = Object.keys(mo
 		<ion-content>
 			<ion-card>
 				<ion-card-header>
-					<ion-card-title>Ionic Svelte - Unofficial Ionic integration</ion-card-title>
+					<ion-card-title>Buddy - Le Robot émotionnel</ion-card-title>
 				</ion-card-header>
 				<ion-card-content>
-					<p>Ionic-Svelte is work in progress and needs your support.</p>
+					<p>Le programme a été développé sous Ionic-Svelte.</p>
 					<br />
 					<p>
-						Share how you are using it, what is really working for you and which parts need
-						improvement.
+						Il vous permettra d'intéragir facilement avec le robot.
 					</p>
 					<br />
 					<p>
-						Raise issues on Github - <a
-							href="https://github.com/Tommertom/svelte-ionic-app/issues"
-							target="_new">https://github.com/Tommertom/svelte-ionic-app/issues</a>
+						Application proposée par ELVEX DOMOTIQUE
 					</p>
 					<br />
 					<p>
-						Join <a
-							href="https://discordapp.com/channels/520266681499779082/1049388501629681675"
-							target="_new">Ionic-Svelte channel</a> on Ionic's official discord
+						Vous pouvez visiter notre site internet:
+					</p>
+					<br />
+					<p>
+					<a
+						href="https://elvex-domotique.fr"
+						target="_new">https://elvex-domotique.fr</a>
 					</p>
 					<br /><br />
-					<p>Thanks!!! Tommertom</p>
+					<p>Amusez-vous bien ^^</p>
 					<br />
-					<img src="/assets/svelte-ionic-logo.png" width="25%" alt="Feedback" />
+					<img src={elvex} width="15%" alt="Feedback" />
 				</ion-card-content>
 			</ion-card>
 			<br />
@@ -104,9 +105,8 @@ let menuItems: Array<{ url: string; label: string; icon: any }> = Object.keys(mo
 				on:click={() => {
 					inlineModalOpen = false;
 				}}>
-				Close modal
+				Retour
 			</ion-button>
-			vite v4.
 		</ion-content>
 	</ion-modal>
 
@@ -120,12 +120,12 @@ let menuItems: Array<{ url: string; label: string; icon: any }> = Object.keys(mo
 					expand="block"
 					on:keyup={() => {
 						//@ts-ignore
-						window.gtag('event', 'Feedback open');
+						//window.gtag('event', 'Feedback open');
 						inlineModalOpen = true;
 					}}
 					on:click={() => {
 						//@ts-ignore
-						window.gtag('event', 'Feedback open');
+						//window.gtag('event', 'Feedback open');
 						inlineModalOpen = true;
 					}}
 					slot="end">About...</ion-button>

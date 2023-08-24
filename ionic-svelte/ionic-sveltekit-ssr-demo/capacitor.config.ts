@@ -1,8 +1,8 @@
 
 import { CapacitorConfig } from '@capacitor/cli';
 
-const appId = 'ionic-sveltekit-ssr-demo.ionic.io';
-const appName = 'ionic-sveltekit-ssr-demo';
+//const appId = 'ionic-sveltekit-ssr-demo.ionic.io';
+//const appName = 'ionic-sveltekit-ssr-demo';
 const server = process.argv.includes('-hmr') ? {
   'url': 'http://192.168.1.10:5173',   // always have http:// in url
   'cleartext': true
@@ -10,8 +10,8 @@ const server = process.argv.includes('-hmr') ? {
 const webDir = 'build';
 
 const config: CapacitorConfig = {
-  appId,
-  appName,
+  appId: 'com.buddy.app',
+  appName: 'Buddy_app',
   webDir,
   server
 };
